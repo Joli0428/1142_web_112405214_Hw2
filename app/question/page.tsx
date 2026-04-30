@@ -7,8 +7,11 @@ export default function Question() {
 
   return (
     <>
+      
+      <div className="flex flex-col justify-center items-center gap-4"> 
       答題
-      <Link href="/prepare">準備看結果</Link>
+      <Link className="text-white bg-black px-3 py-2" href="/prepare">準備看結果</Link>
+    </div>
     </>
   );
 }
