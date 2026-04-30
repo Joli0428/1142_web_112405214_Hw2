@@ -1,5 +1,7 @@
 "use client"
+import Link from "next/link";
 import { useState, useEffect } from "react";
+
 
 
 export default function Home() {
@@ -17,6 +19,7 @@ export default function Home() {
   return (
     <>
       歡迎！
+      <Link href="/question">START!</Link>
     </>
   );
 }
