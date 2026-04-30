@@ -1,12 +1,15 @@
 "use client"
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import{useRouter} from "next/navigation"
 
 export default function Question() {
 
+  const router = useRouter();
+
   let questionData = [
     {
-      title:"Q1：敘述敘述敘述",
+      title:"敘述敘述敘述",
       options:[
         {
           text:"選項一",
@@ -23,7 +26,7 @@ export default function Question() {
       ]
     },
     {
-      title:"Q2：敘述敘述敘述",
+      title:"敘述敘述敘述",
       options:[
         {
           text:"選項一",
@@ -40,7 +43,7 @@ export default function Question() {
       ]
     },
     {
-      title:"Q3：敘述敘述敘述",
+      title:"敘述敘述敘述",
       options:[
         {
           text:"選項一",
@@ -71,27 +74,27 @@ export default function Question() {
     if(questionIndex != questionData.length-1){
     console.log("下一題～");
     setQuestionIndex(questionIndex+1);
-    
+
     }else{
       console.log("進入準備看結果頁面")
+      router.push("/prepare");
     }
   }
 
   return (
     <>
-      
-    <div className="flex flex-col justify-center items-center gap-4"> 
-      答題
-      
-    <div>
-      <div>{questionData[questionIndex].title}</div>
-      <div onClick={ ()=>nextQuestion(0) }>{questionData[questionIndex].options[0].text}</div>
-      <div onClick={ ()=>nextQuestion(1) }>{questionData[questionIndex].options[1].text}</div>
-      <div onClick={ ()=>nextQuestion(2) }>{questionData[questionIndex].options[2].text}</div>
-    </div>
+      <div className="flex flex-col justify-center items-center gap-4"> 
+        答題
+        
+      <div>
+        <div>{("Q"+(questionIndex+1) +".")+ questionData[questionIndex].title}</div>
+        <div onClick={ ()=>nextQuestion(0) }>{questionData[questionIndex].options[0].text}</div>
+        <div onClick={ ()=>nextQuestion(1) }>{questionData[questionIndex].options[1].text}</div>
+        <div onClick={ ()=>nextQuestion(2) }>{questionData[questionIndex].options[2].text}</div>
+      </div>
 
-      <Link className="text-white bg-black px-3 py-2" href="/prepare">準備看結果</Link>
-    </div>
+        <Link className="text-white bg-black px-3 py-2" href="/prepare">準備看結果</Link>
+      </div>
     </>
   );
 }
