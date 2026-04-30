@@ -2,8 +2,11 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import{useRouter} from "next/navigation"
+import{ usePsyDataStore } from "../../store/store"
 
 export default function Question() {
+
+  const psyData = usePsyDataStore((state)=>state);
 
   const router = useRouter();
 
