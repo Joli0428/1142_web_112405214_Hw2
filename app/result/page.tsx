@@ -3,7 +3,6 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 
 export default function Result() {
-
   
   return (
     <>
