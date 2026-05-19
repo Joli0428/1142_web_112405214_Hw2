@@ -16,10 +16,11 @@ export default function Prepare() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
 
-  // 進到此頁就算出 winner（最後一題的分數要算進去）
+  // 進到此頁就算出 winner（最後一題的分數要算進去），僅執行一次
   useEffect( ()=>{
     computeWinner();
-  }, [computeWinner]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
 
   // 階段時序：粒子 → 護法 → 名字 → 跳到 /result

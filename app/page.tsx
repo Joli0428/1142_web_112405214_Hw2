@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { usePsyStore } from "../store/store";
 import Ornament from "@/component/Ornament";
 import Sigil from "@/component/Sigil";
@@ -26,10 +26,13 @@ function LearningDisclaimer({ className = "" }: { className?: string }) {
 
 export default function Home() {
   const reset = usePsyStore((state) => state.reset);
+  const didReset = useRef(false);
 
   useEffect(() => {
+    if (didReset.current) return;
+    didReset.current = true;
     reset();
-  }, []);
+  }, [reset]);
 
   return (
     <div className="w-full min-h-dvh page-in" style={{ color: "var(--ink)" }}>
