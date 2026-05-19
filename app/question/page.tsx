@@ -14,8 +14,9 @@ export default function Question() {
   // 用 key 讓每次換題時動畫重播
   const [animKey, setAnimKey] = useState(0);
 
-  const psyData    = usePsyStore( (state) => state.psyData );
-  const addScore   = usePsyStore( (state) => state.addScore );
+  const psyData       = usePsyStore( (state) => state.psyData );
+  const addScore      = usePsyStore( (state) => state.addScore );
+  const computeWinner = usePsyStore( (state) => state.computeWinner );
 
   const q = psyData.quizData[questionIndex];
 
@@ -38,7 +39,8 @@ export default function Question() {
       setAnimKey( animKey + 1 );
     }else{
       console.log("進入準備看結果頁面");
-      router.push("/prepare");
+      computeWinner();
+      router.push("/prepare", { scroll: false });
     }
   }
 

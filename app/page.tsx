@@ -35,7 +35,7 @@ export default function Home() {
   }, [reset]);
 
   return (
-    <div className="w-full min-h-dvh page-in" style={{ color: "var(--ink)" }}>
+    <div className="w-full min-h-dvh home-in" style={{ color: "var(--ink)" }}>
       {/* ── 手機版（參考 zodiac 範本：左對齊、法陣置中、聲明在底） ── */}
       <div
         className="sm:hidden flex flex-col min-h-dvh px-6 pt-10 pb-8 max-w-[480px] mx-auto w-full"

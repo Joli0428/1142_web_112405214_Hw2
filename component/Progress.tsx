@@ -1,7 +1,5 @@
 // 章節進度條
-"use client"
-
-import Ornament from "./Ornament";
+"use client";
 
 function romanize(n: number){
   const M = ["","I","II","III","IV","V","VI","VII","VIII","IX","X","XI","XII"];

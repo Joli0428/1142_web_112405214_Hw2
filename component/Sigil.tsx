@@ -1,6 +1,8 @@
 // 大型法陣印記（封面用）
 "use client";
 
+const ORIGIN = { transformOrigin: "60px 60px" } as const;
+
 export default function Sigil({
   size = 320,
   opacity = 0.85,
@@ -10,7 +12,7 @@ export default function Sigil({
   opacity?: number;
   animate?: boolean;
 }) {
-  const ringClass = animate ? "sigil-ring-outer" : undefined;
+  const outerClass = animate ? "sigil-ring-outer" : undefined;
   const dashedClass = animate ? "sigil-ring-dashed" : undefined;
   const innerClass = animate ? "sigil-ring-inner" : undefined;
 
@@ -19,12 +21,12 @@ export default function Sigil({
       width={size}
       height={size}
       viewBox="0 0 120 120"
-      className={animate ? "sigil-root" : undefined}
+      className="sigil-root"
       style={{ display: "block", opacity, color: "currentColor" }}
       aria-hidden
     >
-      {/* 外圈 + 八方小點：進場時順時針旋入 */}
-      <g className={ringClass} style={{ transformOrigin: "60px 60px" }}>
+      {/* 外圈 + 八方小點：閒置時緩慢順時針 */}
+      <g className={outerClass} style={ORIGIN}>
         <circle cx="60" cy="60" r="56" fill="none" stroke="currentColor" strokeWidth="0.6" />
         {[0, 1, 2, 3, 4, 5, 6, 7].map((i) => {
           const a = (i * Math.PI) / 4;
@@ -34,8 +36,8 @@ export default function Sigil({
         })}
       </g>
 
-      {/* 虛線中圈：進場時逆時針旋入 */}
-      <g className={dashedClass} style={{ transformOrigin: "60px 60px" }}>
+      {/* 虛線中圈：閒置時緩慢逆時針 */}
+      <g className={dashedClass} style={ORIGIN}>
         <circle
           cx="60"
           cy="60"
@@ -47,8 +49,8 @@ export default function Sigil({
         />
       </g>
 
-      {/* 內圈與中心：淡入 */}
-      <g className={innerClass} style={{ transformOrigin: "60px 60px" }}>
+      {/* 內圈與中心：固定不旋轉 */}
+      <g className={innerClass}>
         <circle cx="60" cy="60" r="32" fill="none" stroke="currentColor" strokeWidth="0.6" />
         <circle cx="60" cy="60" r="18" fill="none" stroke="currentColor" strokeWidth="0.4" />
         <path

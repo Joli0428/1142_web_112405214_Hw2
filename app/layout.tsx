@@ -29,6 +29,7 @@ export default function RootLayout({
     <html
       lang="zh-Hant"
       className={`${notoSerifTC.variable} ${ebGaramond.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
       <body className="min-h-screen w-full bg-[#0a0805]">
         <div className="parchment-bg">

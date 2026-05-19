@@ -151,7 +151,13 @@ function ResultQuoteBlock({ data }: { data: ResultCardData }) {
   );
 }
 
-function ResultTitleBlock({ data }: { data: ResultCardData }) {
+function ResultTitleBlock({
+  data,
+  showZodiac = false,
+}: {
+  data: ResultCardData;
+  showZodiac?: boolean;
+}) {
   return (
     <>
       <h1
@@ -177,6 +183,11 @@ function ResultTitleBlock({ data }: { data: ResultCardData }) {
       >
         {data.role} · {data.symbol}
       </p>
+      {showZodiac && (
+        <div className="mt-3 lg:mt-4">
+          <ZodiacLabel winner={data.winner} />
+        </div>
+      )}
     </>
   );
 }
@@ -217,16 +228,14 @@ function ResultCardFooter({
               color: "var(--ink-faint)",
             }}
           >
-            次要護法傾向 · {secondary}
+            次要護法傾向：{secondary}
             {secondaryPatronus && (
               <span style={{ color: "var(--ink-mute)" }}>
                 （{secondaryPatronus}）
               </span>
             )}
           </p>
-        ) : (
-          <span className="hidden lg:block" aria-hidden />
-        )}
+        ) : null}
         <p
           className="font-serif-en italic m-0 lg:text-[11px] lg:tracking-[0.28em]"
           style={{
@@ -303,7 +312,7 @@ const ResultCard = forwardRef<HTMLDivElement, { data: ResultCardData }>(
         </div>
 
         {/* 桌面：圖騰左上、標題右上、內文全寬 */}
-        <div className="hidden lg:flex lg:flex-col lg:mt-8 lg:gap-7 lg:text-left">
+        <div className="hidden lg:flex lg:flex-col lg:mt-8 lg:gap-6 lg:text-left">
           <div className="flex items-start gap-8">
             <div className="result-card-symbol-col shrink-0 w-[156px] flex flex-col items-center">
               <div className="result-symbol-glow result-symbol-glow--corner">
@@ -312,17 +321,11 @@ const ResultCard = forwardRef<HTMLDivElement, { data: ResultCardData }>(
             </div>
 
             <div className="flex-1 min-w-0 pt-1 pr-2">
-              <ResultTitleBlock data={data} />
-              <div className="mt-4">
-                <ZodiacLabel winner={data.winner} />
-              </div>
-              <div className="mt-5 flex justify-start" style={{ color: "var(--accent)" }}>
-                <Ornament size={40} opacity={0.5} />
-              </div>
+              <ResultTitleBlock data={data} showZodiac />
             </div>
           </div>
 
-          <div className="w-full pr-2 flex flex-col gap-7">
+          <div className="w-full pr-2 flex flex-col gap-6 pt-6 border-t border-[var(--line)]">
             <ResultBlurb blurb={data.blurb} compactTop />
             <ResultQuoteBlock data={data} />
           </div>
